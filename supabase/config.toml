@@ -1,1 +1,7 @@
 project_id = "vuwefqlgkkgijpeyncdb"
+
+[functions.request-early-access]
+verify_jwt = false
+
+[functions.investor-contact]
+verify_jwt = false
