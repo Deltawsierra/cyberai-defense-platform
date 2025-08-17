@@ -19,8 +19,14 @@ export default function ContainerScroll() {
         {steps.map((s, i) => (
           <motion.div key={i} style={{ rotate, y }}
             className="rounded-xl border border-white/10 bg-surface p-6 shadow-sm">
-            <h3 className="text-xl font-semibold">{s.title}</h3>
-            <p className="text-sm text-muted mt-2">{s.desc}</p>
+            <motion.div
+              initial={{ y: 0, rotate: 0 }}
+              animate={reduced ? { y: 0, rotate: 0 } : { y: [0, -4, 0], rotate: [0, 0.6, 0] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <h3 className="text-xl font-semibold">{s.title}</h3>
+              <p className="text-sm text-muted mt-2">{s.desc}</p>
+            </motion.div>
           </motion.div>
         ))}
       </div>
