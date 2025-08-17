@@ -1,12 +1,11 @@
-// src/components/ui/ThreeDMarquee.tsx
-import { motion } from "motion/react";            // make sure `motion` is installed
+import { motion } from "motion/react";
 import { useMemo } from "react";
 
 type Props = {
-  images?: string[];         // prefer local /public paths
+  images?: string[];      // prefer /public paths like /partners/*.webp
   className?: string;
-  hoverLift?: number;        // px; default 10
-  debug?: boolean;           // shows placeholder tiles to validate geometry
+  hoverLift?: number;     // px
+  debug?: boolean;        // true -> shows placeholders so geometry is testable
 };
 
 export default function ThreeDMarquee({
@@ -15,31 +14,31 @@ export default function ThreeDMarquee({
   hoverLift = 10,
   debug = false,
 }: Props) {
-  // If images missing, synthesize 16 placeholders (so layout still moves)
+  // if no images, synthesize placeholders (so you still see motion)
   const list = useMemo(
     () => (images.length ? images : Array.from({ length: 16 }, (_, i) => `__placeholder__${i}`)),
     [images]
   );
 
-  // Split into 4 columns (roughly equal)
+  // 4 columns
   const chunk = Math.ceil(list.length / 4) || 1;
   const chunks = [0, 1, 2, 3].map((c) => list.slice(c * chunk, (c + 1) * chunk));
 
   return (
     <section aria-label="Trusted by" className={`relative overflow-hidden rounded-2xl ${className}`}>
-      {/* background split (behind content) */}
+      {/* background split (decorative) */}
       <div className="absolute inset-0 -z-10 grid grid-cols-2 opacity-20">
         <div className="bg-gradient-to-br from-primary to-purple-400" />
         <div className="bg-gradient-to-br from-blue-500 to-cyan-500" />
       </div>
 
-      {/* fixed-height viewport so we always see something */}
+      {/* fixed viewport so the plane is visible */}
       <div className="relative h-[600px] w-full">
-        {/* center the 3D stage: translate(-50%,-50%) instead of top/right hacks */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 perspective-[800px]">
-          {/* big square that we scale responsively (use explicit w/h, not `size-[1720px]`) */}
+        {/* center the 3D stage */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 [perspective:800px]">
+          {/* big square (explicit width/height, no nonstandard 'size-[...]') */}
           <div className="w-[1720px] h-[1720px] scale-50 sm:scale-75 lg:scale-100">
-            {/* the tilted plane */}
+            {/* tilted plane */}
             <div
               className="relative origin-top-left grid grid-cols-4 gap-8"
               style={{ transform: "rotateX(55deg) rotateZ(-45deg)", transformStyle: "preserve-3d" }}
@@ -51,9 +50,7 @@ export default function ThreeDMarquee({
                   animate={{ y: colIdx % 2 === 0 ? 100 : -100 }}
                   transition={{ duration: colIdx % 2 === 0 ? 10 : 15, repeat: Infinity, repeatType: "reverse" }}
                 >
-                  {/* decorative grid lines */}
                   <GridLineVertical className="-left-4" offset="80px" />
-
                   {col.map((src, i) => (
                     <div className="relative" key={`${colIdx}-${i}`}>
                       <GridLineHorizontal className="-top-4" offset="20px" />
@@ -83,14 +80,8 @@ export default function ThreeDMarquee({
   );
 }
 
-/* Decorative scan lines. Keep as-is. */
-function GridLineHorizontal({
-  className = "",
-  offset = "200px",
-}: {
-  className?: string;
-  offset?: string;
-}) {
+/* decorative scan lines */
+function GridLineHorizontal({ className = "", offset = "200px" }:{ className?: string; offset?: string }) {
   return (
     <div
       style={
@@ -117,14 +108,7 @@ function GridLineHorizontal({
     />
   );
 }
-
-function GridLineVertical({
-  className = "",
-  offset = "150px",
-}: {
-  className?: string;
-  offset?: string;
-}) {
+function GridLineVertical({ className = "", offset = "150px" }:{ className?: string; offset?: string }) {
   return (
     <div
       style={
