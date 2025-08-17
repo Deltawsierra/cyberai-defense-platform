@@ -2,6 +2,7 @@ import { z } from 'zod'
 import { useState } from 'react'
 import StatefulButton from '@/components/ui/StatefulButton'
 import { postJSON } from '@/lib/http'
+import ContainerScroll from '@/components/motion/ContainerScroll'
 
 const schema = z.object({
   name: z.string().min(1).max(200),
@@ -37,29 +38,7 @@ export default function Demo() {
 
       <section id="how-it-works" className="py-8">
         <h2 className="text-3xl font-bold text-center text-text mb-12">How it Works</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-surface p-6 rounded-lg">
-            <h3 className="text-xl font-semibold text-primaryAccent mb-3">Ingest</h3>
-            <p className="text-muted">
-              Continuous data collection from all security tools and endpoints. Our AI ingests logs, network traffic, 
-              and behavioral data from across your infrastructure.
-            </p>
-          </div>
-          <div className="bg-surface p-6 rounded-lg">
-            <h3 className="text-xl font-semibold text-primaryAccent mb-3">Detect</h3>
-            <p className="text-muted">
-              Advanced ML models analyze patterns and identify threats in under 100ms. Our system learns normal 
-              behavior patterns and instantly flags anomalies that indicate potential threats.
-            </p>
-          </div>
-          <div className="bg-surface p-6 rounded-lg">
-            <h3 className="text-xl font-semibold text-primaryAccent mb-3">Remediate</h3>
-            <p className="text-muted">
-              Automated response protocols contain threats immediately. From network isolation to credential rotation, 
-              our playbooks execute faster than any human team could respond.
-            </p>
-          </div>
-        </div>
+        <ContainerScroll />
       </section>
 
       {/* Placeholder Video Section */}

@@ -1,5 +1,7 @@
 import CardSpotlight from '@/components/ui/CardSpotlight'
 import SEOHead from '@/components/SEOHead'
+import HeroParallax from '@/components/motion/HeroParallax'
+import ThreeDMarquee from '@/components/motion/ThreeDMarquee'
 
 export default function Home() {
   return (
@@ -10,26 +12,12 @@ export default function Home() {
       />
       <div className="space-y-16">
       {/* Hero Section */}
-      <section className="text-center py-16">
-        <h1 className="text-5xl font-bold text-text mb-6">Autonomous Cyber Defense</h1>
-        <p className="text-xl text-muted mb-8 max-w-2xl mx-auto">
-          Our AI hunts threats in milliseconds—before they become incidents.
-        </p>
-        <div className="flex gap-4 justify-center">
-          <a 
-            href="/demo" 
-            className="inline-flex items-center rounded-md bg-primary px-6 py-3 text-lg font-medium text-black hover:shadow-glow focus-visible:outline-none transition-all"
-          >
-            Try the Demo
-          </a>
-          <a 
-            href="#how-it-works" 
-            className="inline-flex items-center rounded-md border border-primary px-6 py-3 text-lg font-medium text-primary hover:bg-primary hover:text-black focus-visible:outline-none transition-all"
-          >
-            How it works
-          </a>
-        </div>
-      </section>
+      <HeroParallax
+        title="Autonomous Cyber Defense"
+        subtitle="Our AI hunts threats in milliseconds—before they become incidents."
+        ctaText="Try the Demo"
+        ctaHref="/demo"
+      />
 
       {/* Features Section */}
       <section className="py-16" aria-labelledby="features-title">
@@ -113,12 +101,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Placeholder sections for future enhancements */}
-      <section className="py-16 text-center">
-        <div className="bg-surface/20 border-2 border-dashed border-muted/30 rounded-lg p-8">
-          <p className="text-muted">Future: 3D Marquee Component</p>
-        </div>
-      </section>
+      {/* Trusted By Marquee */}
+      <ThreeDMarquee items={[
+        { alt:'Partner 1', label:'ALPHA' },
+        { alt:'Partner 2', label:'BETA' },
+        { alt:'Partner 3', label:'GAMMA' },
+        { alt:'Partner 4', label:'DELTA' }
+      ]}/>
 
       <section className="py-16 text-center">
         <div className="bg-surface/20 border-2 border-dashed border-muted/30 rounded-lg p-8">
