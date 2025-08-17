@@ -32,6 +32,13 @@ export default function AnimatedTestimonials({ items, intervalMs = 6000, heading
     return () => clearInterval(t)
   }, [reduced, paused, count, intervalMs])
 
+  // kickoff timer for immediate movement
+  useEffect(() => {
+    if (reduced || paused || count <= 1) return
+    const kickoff = setTimeout(() => setIndex(i => (i + 1) % count), 1200)
+    return () => clearTimeout(kickoff)
+  }, [reduced, paused, count])
+
   const go = (n: number) => setIndex(((n % count) + count) % count)
   const next = () => go(index + 1)
   const prev = () => go(index - 1)
