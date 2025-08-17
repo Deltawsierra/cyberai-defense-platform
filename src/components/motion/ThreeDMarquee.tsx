@@ -1,24 +1,26 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useReducedMotion } from '@/lib/useReducedMotion'
 
 export default function ThreeDMarquee({ items }:{ items: { alt: string; src?: string; label?: string }[] }) {
   const reduced = useReducedMotion()
   const [isPaused, setIsPaused] = useState(false)
+  const trackRef = useRef<HTMLDivElement>(null)
   
   return (
     <section aria-label="Trusted by">
       <div className={`relative mt-8 overflow-hidden rounded-xl border border-white/10 bg-surface p-4`}>
         <div
+          ref={trackRef}
           className="flex gap-12 items-center will-change-transform"
           style={{
-            animation: reduced ? undefined : 'marquee 20s linear infinite',
-            animationPlayState: isPaused ? 'paused' : 'running',
+            animation: reduced ? undefined : 'marquee 18s linear infinite',
+            animationPlayState: 'running',
             transformStyle: 'preserve-3d'
           }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onFocus={() => setIsPaused(true)}
-          onBlur={() => setIsPaused(false)}
+          onMouseEnter={() => { if (trackRef.current) trackRef.current.style.animationPlayState = 'paused' }}
+          onMouseLeave={() => { if (trackRef.current) trackRef.current.style.animationPlayState = 'running' }}
+          onFocus={() => { if (trackRef.current) trackRef.current.style.animationPlayState = 'paused' }}
+          onBlur={() => { if (trackRef.current) trackRef.current.style.animationPlayState = 'running' }}
         >
           {items.concat(items).map((it, i) => (
             <div key={i} className="shrink-0 opacity-80 hover:opacity-100" aria-label={it.alt} role="img">
