@@ -9,7 +9,16 @@ html, body, #root { height: 100%; background: theme('colors.bg'); color: theme('
 :focus-visible { outline: 2px solid theme('colors.primary'); outline-offset: 2px; }
 
 /* 3D utility for Aceternity components */
-.transform-3d { transform-style: preserve-3d; }
+.transform-3d { 
+  transform-style: preserve-3d; 
+  -webkit-transform-style: preserve-3d;
+}
+
+/* Cross-browser mask support for grid lines */
+.mask-exclude { 
+  mask-composite: exclude; 
+  -webkit-mask-composite: exclude; 
+}
 
 /* Reduced motion preference respected globally */
 @media (prefers-reduced-motion: reduce) {

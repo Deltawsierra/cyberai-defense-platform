@@ -24,6 +24,9 @@ export default {
         '800': '800px',
         '1000': '1000px',
       },
+      transformStyle: {
+        '3d': 'preserve-3d',
+      },
     },
   },
   plugins: [],

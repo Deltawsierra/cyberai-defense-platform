@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 /** Back-compat: accept either `images` or `items` (items[].src). Prefer `images`. */
@@ -103,7 +103,7 @@ function GridLineHorizontal({
         "bg-[linear-gradient(to_right,var(--color),var(--color)_50%,transparent_0,transparent)]",
         "[background-size:var(--width)_var(--height)]",
         "[mask:linear-gradient(to_left,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_right,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]",
-        "[mask-composite:exclude]",
+        "[mask-composite:exclude] mask-exclude",
         "z-30",
         "dark:bg-[linear-gradient(to_right,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
         className
@@ -138,7 +138,7 @@ function GridLineVertical({
         "bg-[linear-gradient(to_bottom,var(--color),var(--color)_50%,transparent_0,transparent)]",
         "[background-size:var(--width)_var(--height)]",
         "[mask:linear-gradient(to_top,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_bottom,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]",
-        "[mask-composite:exclude]",
+        "[mask-composite:exclude] mask-exclude",
         "z-30",
         "dark:bg-[linear-gradient(to_bottom,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
         className
