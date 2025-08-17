@@ -1,6 +1,27 @@
 import GlowTile from '@/components/ui/GlowTile'
+import { z } from 'zod'
+import { useState } from 'react'
+import StatefulButton from '@/components/ui/StatefulButton'
+import { postJSON } from '@/lib/http'
+
+const schema = z.object({
+  name: z.string().min(1).max(200),
+  email: z.string().email(),
+  message: z.string().min(1).max(5000),
+})
 
 export default function Investors() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [msg, setMsg] = useState<{type:'ok'|'err'|null;text:string}>({type:null, text:''})
+
+  const onSubmit = async () => {
+    setMsg({type:null, text:''})
+    const parsed = schema.safeParse(formData)
+    if (!parsed.success) throw new Error('invalid')
+    await postJSON(`${import.meta.env.VITE_FUNCTIONS_BASE}/investor-contact`, parsed.data)
+    setMsg({type:'ok', text:'Thanks - investor relations will follow up.'})
+    setFormData({ name: '', email: '', message: '' })
+  }
   return (
     <div className="space-y-16">
       <section className="text-center py-8">
@@ -42,13 +63,55 @@ export default function Investors() {
         </GlowTile>
       </section>
 
-      {/* Placeholder Contact Form */}
+      {/* Investor Contact Form */}
       <section className="bg-surface p-8 rounded-lg">
         <h2 className="text-2xl font-bold text-text mb-6 text-center">Investor Inquiries</h2>
-        <div className="max-w-md mx-auto border-2 border-dashed border-muted/30 rounded-lg p-8 text-center">
-          <p className="text-muted mb-4">Investor contact form</p>
-          <p className="text-sm text-muted/60">(Secure form will be implemented with backend)</p>
-        </div>
+        <form className="max-w-md mx-auto space-y-4" onSubmit={(e) => e.preventDefault()}>
+          <div>
+            <label htmlFor="investor-name" className="block text-sm font-medium text-text mb-2">Name *</label>
+            <input
+              id="investor-name"
+              type="text"
+              value={formData.name}
+              onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+              className="w-full px-3 py-2 bg-bg border border-white/10 rounded-md text-text focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="investor-email" className="block text-sm font-medium text-text mb-2">Email *</label>
+            <input
+              id="investor-email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+              className="w-full px-3 py-2 bg-bg border border-white/10 rounded-md text-text focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="investor-message" className="block text-sm font-medium text-text mb-2">Message *</label>
+            <textarea
+              id="investor-message"
+              value={formData.message}
+              onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+              className="w-full px-3 py-2 bg-bg border border-white/10 rounded-md text-text focus:outline-none focus:ring-2 focus:ring-primary h-32 resize-none"
+              required
+            />
+          </div>
+          <div className="pt-4">
+            <StatefulButton 
+              label="Contact Investor Relations" 
+              onAction={onSubmit}
+              className="w-full"
+            />
+          </div>
+          {msg.type && (
+            <div className={`text-center text-sm ${msg.type === 'ok' ? 'text-accent' : 'text-danger'}`}>
+              {msg.type === 'ok' ? msg.text : 'Something went wrong. Please try again later.'}
+            </div>
+          )}
+        </form>
       </section>
     </div>
   )
