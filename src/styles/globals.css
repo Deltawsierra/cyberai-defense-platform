@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body, #root { height: 100%; background: theme('colors.bg'); color: theme('colors.text'); }
+
+/* Accessible focus ring */
+:focus-visible { outline: 2px solid theme('colors.primary'); outline-offset: 2px; }
+
+/* Reduced motion preference respected globally */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
