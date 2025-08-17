@@ -1,3 +1,5 @@
+import GlowTile from '@/components/ui/GlowTile'
+
 export default function Investors() {
   return (
     <div className="space-y-16">
@@ -23,21 +25,21 @@ export default function Investors() {
 
       {/* Metrics Section */}
       <section className="grid md:grid-cols-3 gap-6">
-        <div className="bg-surface p-6 rounded-lg text-center">
+        <GlowTile className="text-center">
           <div className="text-3xl font-bold text-primary mb-2">&lt; 1s</div>
           <h3 className="text-lg font-semibold text-text mb-2">Threat Signal Latency</h3>
           <p className="text-muted text-sm">From detection to containment</p>
-        </div>
-        <div className="bg-surface p-6 rounded-lg text-center">
+        </GlowTile>
+        <GlowTile className="text-center">
           <div className="text-3xl font-bold text-accent mb-2">Zero Trust</div>
           <h3 className="text-lg font-semibold text-text mb-2">Architecture Ready</h3>
           <p className="text-muted text-sm">Built for modern security models</p>
-        </div>
-        <div className="bg-surface p-6 rounded-lg text-center">
+        </GlowTile>
+        <GlowTile className="text-center">
           <div className="text-3xl font-bold text-primaryAccent mb-2">Enterprise</div>
           <h3 className="text-lg font-semibold text-text mb-2">Security Market</h3>
           <p className="text-muted text-sm">$150B+ addressable market</p>
-        </div>
+        </GlowTile>
       </section>
 
       {/* Placeholder Contact Form */}

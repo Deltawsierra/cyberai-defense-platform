@@ -1,3 +1,5 @@
+import CardSpotlight from '@/components/ui/CardSpotlight'
+
 export default function Home() {
   return (
     <div className="space-y-16">
@@ -27,50 +29,53 @@ export default function Home() {
       <section className="py-16" aria-labelledby="features-title">
         <h2 id="features-title" className="sr-only">Features</h2>
         <div className="grid md:grid-cols-3 gap-8">
-          <article 
-            className="bg-surface p-6 rounded-lg hover:shadow-glow focus-within:shadow-glow transition-all cursor-pointer" 
-            role="article" 
-            aria-labelledby="detect-title"
-            tabIndex={0}
-          >
-            <div className="w-12 h-12 bg-primary/20 rounded-lg mb-4 flex items-center justify-center">
-              <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 id="detect-title" className="text-xl font-semibold text-text mb-2">Detect</h3>
-            <p className="text-muted">Real-time anomaly and threat detection across endpoints and cloud.</p>
-          </article>
+          <CardSpotlight>
+            <article 
+              role="article" 
+              aria-labelledby="detect-title"
+              tabIndex={0}
+            >
+              <div className="w-12 h-12 bg-primary/20 rounded-lg mb-4 flex items-center justify-center">
+                <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 id="detect-title" className="text-xl font-semibold text-text mb-2">Detect</h3>
+              <p className="text-muted">Real-time anomaly and threat detection across endpoints and cloud.</p>
+            </article>
+          </CardSpotlight>
 
-          <article 
-            className="bg-surface p-6 rounded-lg hover:shadow-glow focus-within:shadow-glow transition-all cursor-pointer" 
-            role="article" 
-            aria-labelledby="respond-title"
-            tabIndex={0}
-          >
-            <div className="w-12 h-12 bg-primary/20 rounded-lg mb-4 flex items-center justify-center">
-              <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 id="respond-title" className="text-xl font-semibold text-text mb-2">Respond</h3>
-            <p className="text-muted">Automated containment playbooks reduce MTTR to seconds.</p>
-          </article>
+          <CardSpotlight>
+            <article 
+              role="article" 
+              aria-labelledby="respond-title"
+              tabIndex={0}
+            >
+              <div className="w-12 h-12 bg-primary/20 rounded-lg mb-4 flex items-center justify-center">
+                <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 id="respond-title" className="text-xl font-semibold text-text mb-2">Respond</h3>
+              <p className="text-muted">Automated containment playbooks reduce MTTR to seconds.</p>
+            </article>
+          </CardSpotlight>
 
-          <article 
-            className="bg-surface p-6 rounded-lg hover:shadow-glow focus-within:shadow-glow transition-all cursor-pointer" 
-            role="article" 
-            aria-labelledby="comply-title"
-            tabIndex={0}
-          >
-            <div className="w-12 h-12 bg-primary/20 rounded-lg mb-4 flex items-center justify-center">
-              <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <h3 id="comply-title" className="text-xl font-semibold text-text mb-2">Comply</h3>
-            <p className="text-muted">Evidence and reporting that help satisfy security frameworks.</p>
-          </article>
+          <CardSpotlight>
+            <article 
+              role="article" 
+              aria-labelledby="comply-title"
+              tabIndex={0}
+            >
+              <div className="w-12 h-12 bg-primary/20 rounded-lg mb-4 flex items-center justify-center">
+                <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <h3 id="comply-title" className="text-xl font-semibold text-text mb-2">Comply</h3>
+              <p className="text-muted">Evidence and reporting that help satisfy security frameworks.</p>
+            </article>
+          </CardSpotlight>
         </div>
       </section>
 
