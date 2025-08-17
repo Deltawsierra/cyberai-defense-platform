@@ -3,6 +3,7 @@ import { useState } from 'react'
 import StatefulButton from '@/components/ui/StatefulButton'
 import { postJSON } from '@/lib/http'
 import ContainerScroll from '@/components/motion/ContainerScroll'
+import GlowingEffect from '@/components/ui/GlowingEffect'
 
 const schema = z.object({
   name: z.string().min(1).max(200),
@@ -93,11 +94,13 @@ export default function Demo() {
             />
           </div>
           <div className="pt-4">
-            <StatefulButton 
-              label="Request Early Access" 
-              onAction={onRequest}
-              className="w-full"
-            />
+            <GlowingEffect intensity="bright">
+              <StatefulButton 
+                label="Request Early Access" 
+                onAction={onRequest}
+                className="w-full"
+              />
+            </GlowingEffect>
           </div>
           {msg.type && (
             <div className={`text-center text-sm ${msg.type === 'ok' ? 'text-accent' : 'text-danger'}`}>
