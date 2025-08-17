@@ -1,8 +1,14 @@
 import CardSpotlight from '@/components/ui/CardSpotlight'
+import SEOHead from '@/components/SEOHead'
 
 export default function Home() {
   return (
-    <div className="space-y-16">
+    <>
+      <SEOHead 
+        title="CyberAI - Autonomous Cyber Defense"
+        description="Our AI hunts threats in milliseconds—before they become incidents. Advanced threat detection and automated response for modern enterprises."
+      />
+      <div className="space-y-16">
       {/* Hero Section */}
       <section className="text-center py-16">
         <h1 className="text-5xl font-bold text-text mb-6">Autonomous Cyber Defense</h1>
@@ -120,5 +126,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    </>
   )
 }
