@@ -74,3 +74,10 @@
 - Test in multiple browsers (Chrome, Firefox, Safari, Edge)
 - Verify mobile testing on actual devices if possible
 - Check all external links (though most should be placeholders)
+
+## Monthly Maintenance
+- [ ] npm audit --audit-level=high
+- [ ] tsc --noEmit
+- [ ] eslint . --max-warnings=0
+- [ ] grep -R "service_role" dist/ || true
+- [ ] curl -I https://<staging-domain>/ | grep -E "strict-transport|content-security|referrer-policy"

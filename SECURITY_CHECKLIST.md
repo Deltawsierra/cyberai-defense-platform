@@ -77,3 +77,12 @@
 - [ ] Rollback plan prepared and tested
 
 **Deployment authorized by:** _________________ **Date:** _________
+
+### Operational Security (Ongoing)
+- [ ] Supabase secrets rotated last 90 days
+- [ ] RESEND key rotated last 180 days
+- [ ] Rate-limit thresholds reviewed
+- [ ] CSP verified in prod (curl -I)
+- [ ] RLS verified (no public policies)
+- [ ] No client-side references to service_role key
+- [ ] Reduced-motion fallback verified on all motion sections
