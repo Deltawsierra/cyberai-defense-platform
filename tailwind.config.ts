@@ -20,6 +20,10 @@ export default {
       fontFamily: {
         sans: ['ui-sans-serif', 'Inter', 'system-ui', 'Segoe UI', 'Roboto'],
       },
+      perspective: {
+        '800': '800px',
+        '1000': '1000px',
+      },
     },
   },
   plugins: [],

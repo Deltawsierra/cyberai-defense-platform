@@ -30,11 +30,16 @@ export default function ThreeDMarquee({
 
   return (
     <div className={cn("mx-auto block h-[600px] overflow-hidden rounded-2xl max-sm:h-[400px]", className)}>
-      <div className="flex w-full h-full items-center justify-center">
+      <div className="relative flex w-full h-full items-center justify-center" style={{ perspective: "800px" }}>
+        {/* Background gradient effect */}
+        <div className="absolute inset-0 -z-10 grid grid-cols-2 opacity-20 dark:opacity-30 pointer-events-none">
+          <div className="bg-gradient-to-br from-primary to-purple-500" />
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-500" />
+        </div>
         <div className="w-[1720px] h-[1720px] shrink-0 scale-50 sm:scale-75 lg:scale-100">
           <div
-            style={{ transform: "rotateX(55deg) rotateY(0deg) rotateZ(-45deg)" }}
-            className="relative top-96 right-[50%] grid w-full h-full origin-top-left grid-cols-4 gap-8 transform-3d"
+            style={{ transform: "rotateX(55deg) rotateZ(-45deg)" }}
+            className="relative top-96 right-1/2 grid w-full h-full origin-top-left grid-cols-4 gap-8 transform-3d"
           >
             {chunks.map((subarray, colIndex) => (
               <motion.div
