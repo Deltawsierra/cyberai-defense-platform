@@ -8,6 +8,9 @@ html, body, #root { height: 100%; background: theme('colors.bg'); color: theme('
 /* Accessible focus ring */
 :focus-visible { outline: 2px solid theme('colors.primary'); outline-offset: 2px; }
 
+/* 3D utility for Aceternity components */
+.transform-3d { transform-style: preserve-3d; }
+
 /* Reduced motion preference respected globally */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

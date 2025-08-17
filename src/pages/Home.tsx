@@ -1,7 +1,7 @@
 import CardSpotlight from '@/components/ui/CardSpotlight'
 import SEOHead from '@/components/SEOHead'
 import HeroParallax from '@/components/motion/HeroParallax'
-import ThreeDMarquee from '@/components/motion/ThreeDMarquee'
+import ThreeDMarquee from '@/components/ui/ThreeDMarquee'
 import AnimatedTestimonials from '@/components/motion/AnimatedTestimonials'
 import GlowingEffect from '@/components/ui/GlowingEffect'
 
@@ -22,12 +22,18 @@ export default function Home() {
       />
 
       {/* Trusted By Marquee */}
-      <ThreeDMarquee items={[
-        { alt:'Partner 1', label:'ALPHA' },
-        { alt:'Partner 2', label:'BETA' },
-        { alt:'Partner 3', label:'GAMMA' },
-        { alt:'Partner 4', label:'DELTA' }
-      ]}/>
+      <ThreeDMarquee
+        images={[
+          "/images/partners/alpha.webp",
+          "/images/partners/beta.webp",
+          "/images/partners/gamma.webp",
+          "/images/partners/delta.webp",
+          "/images/partners/epsilon.webp",
+          "/images/partners/zeta.webp",
+          "/images/partners/eta.webp",
+          "/images/partners/theta.webp",
+        ]}
+      />
 
       {/* Testimonials */}
       <AnimatedTestimonials
