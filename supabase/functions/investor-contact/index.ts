@@ -62,6 +62,27 @@ serve(async (req) => {
       ip_hash: hash,
       status: "new",
     });
+
+    try {
+      const apiKey = Deno.env.get("RESEND_API_KEY")
+      const from = Deno.env.get("OPS_FROM")
+      const to = Deno.env.get("OPS_TO_INVESTORS")
+      if (apiKey && from && to) {
+        const html = `
+          <h2>New Investor Inquiry</h2>
+          <p><b>Name:</b> ${parsed.name}</p>
+          <p><b>Email:</b> ${parsed.email}</p>
+          <p><b>Message:</b><br/>${(parsed.message||'').replace(/</g,'&lt;')}</p>
+          <p><small>IP hash: ${hash}</small></p>
+        `
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
+          body: JSON.stringify({ from, to, subject: "Investor Inquiry", html })
+        })
+      }
+    } catch { /* swallow */ }
+
     return new Response(null, { status: 204, headers: cors(origin) });
   } catch {
     return new Response(JSON.stringify({ error: "invalid_request" }), { status: 400, headers: { "content-type": "application/json", ...cors(origin) } });
