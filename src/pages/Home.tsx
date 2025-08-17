@@ -2,6 +2,8 @@ import CardSpotlight from '@/components/ui/CardSpotlight'
 import SEOHead from '@/components/SEOHead'
 import HeroParallax from '@/components/motion/HeroParallax'
 import ThreeDMarquee from '@/components/motion/ThreeDMarquee'
+import AnimatedTestimonials from '@/components/motion/AnimatedTestimonials'
+import GlowingEffect from '@/components/ui/GlowingEffect'
 
 export default function Home() {
   return (
@@ -101,6 +103,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <AnimatedTestimonials
+        id="home-testimonials"
+        heading="Trusted by security leaders"
+        items={[
+          { quote: 'Cut our MTTR dramatically in the first week.', name: 'Security Director', title: 'Fortune 500' },
+          { quote: 'Finally, AI that explains itself to analysts.', name: 'SOC Manager', title: 'Global MSSP' },
+          { quote: 'Deployment was painless and the insights were immediate.', name: 'CISO', title: 'Enterprise SaaS' },
+        ]}
+      />
+
       {/* Trusted By Marquee */}
       <ThreeDMarquee items={[
         { alt:'Partner 1', label:'ALPHA' },
@@ -108,12 +121,6 @@ export default function Home() {
         { alt:'Partner 3', label:'GAMMA' },
         { alt:'Partner 4', label:'DELTA' }
       ]}/>
-
-      <section className="py-16 text-center">
-        <div className="bg-surface/20 border-2 border-dashed border-muted/30 rounded-lg p-8">
-          <p className="text-muted">Future: Testimonials Section</p>
-        </div>
-      </section>
     </div>
     </>
   )

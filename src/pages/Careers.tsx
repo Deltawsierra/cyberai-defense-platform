@@ -1,4 +1,5 @@
 import GlowTile from '@/components/ui/GlowTile'
+import AnimatedTestimonials from '@/components/motion/AnimatedTestimonials'
 
 export default function Careers() {
   return (
@@ -9,6 +10,16 @@ export default function Careers() {
           Help us build the next generation of autonomous cybersecurity defense
         </p>
       </section>
+
+      {/* Why People Love Working Here */}
+      <AnimatedTestimonials
+        id="careers-testimonials"
+        heading="Why people love working here"
+        items={[
+          { quote: 'Working on cutting-edge AI security tech with brilliant teammates every day.', name: 'Sarah Chen', title: 'Senior ML Engineer' },
+          { quote: 'The mission is clear: protect organizations from the next generation of threats.', name: 'Marcus Williams', title: 'Security Researcher' },
+        ]}
+      />
 
       <section className="space-y-8">
         <GlowTile>

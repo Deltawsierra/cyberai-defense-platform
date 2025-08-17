@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { useReducedMotion } from '@/lib/useReducedMotion'
+import GlowingEffect from '@/components/ui/GlowingEffect'
 
 export default function HeroParallax({ title, subtitle, ctaText, ctaHref }:{
   title: string; subtitle: string; ctaText: string; ctaHref: string;
@@ -15,9 +16,11 @@ export default function HeroParallax({ title, subtitle, ctaText, ctaHref }:{
       <motion.div style={{ y, opacity }}>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight">{title}</h1>
         <p className="mt-4 text-lg md:text-xl text-muted">{subtitle}</p>
-        <a href={ctaHref} className="mt-6 inline-flex rounded-md bg-primary px-5 py-3 text-black hover:shadow-glow focus-visible:outline-none">
-          {ctaText}
-        </a>
+        <GlowingEffect intensity="bright" className="mt-6 inline-block">
+          <a href={ctaHref} className="inline-flex rounded-md bg-primary px-5 py-3 text-black hover:shadow-glow focus-visible:outline-none">
+            {ctaText}
+          </a>
+        </GlowingEffect>
       </motion.div>
     </section>
   )

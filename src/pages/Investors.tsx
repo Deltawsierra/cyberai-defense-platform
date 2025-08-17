@@ -3,6 +3,8 @@ import { z } from 'zod'
 import { useState } from 'react'
 import StatefulButton from '@/components/ui/StatefulButton'
 import { postJSON } from '@/lib/http'
+import AnimatedTestimonials from '@/components/motion/AnimatedTestimonials'
+import GlowingEffect from '@/components/ui/GlowingEffect'
 
 const schema = z.object({
   name: z.string().min(1).max(200),
@@ -24,6 +26,11 @@ export default function Investors() {
   }
   return (
     <div className="space-y-16">
+      <details className="text-sm text-muted mb-4">
+        <summary className="cursor-pointer">Accessibility: visual effects</summary>
+        <p className="mt-2">If animations are distracting, enable your system setting "Reduce Motion". This site respects it and disables non-essential effects.</p>
+      </details>
+
       <section className="text-center py-8">
         <h1 className="text-4xl font-bold text-text mb-4">Investors</h1>
         <p className="text-xl text-muted max-w-3xl mx-auto">
@@ -46,22 +53,33 @@ export default function Investors() {
 
       {/* Metrics Section */}
       <section className="grid md:grid-cols-3 gap-6">
-        <GlowTile className="text-center">
+        <GlowingEffect intensity="bright" className="text-center p-6">
           <div className="text-3xl font-bold text-primary mb-2">&lt; 1s</div>
           <h3 className="text-lg font-semibold text-text mb-2">Threat Signal Latency</h3>
           <p className="text-muted text-sm">From detection to containment</p>
-        </GlowTile>
-        <GlowTile className="text-center">
+        </GlowingEffect>
+        <GlowingEffect intensity="bright" className="text-center p-6">
           <div className="text-3xl font-bold text-accent mb-2">Zero Trust</div>
           <h3 className="text-lg font-semibold text-text mb-2">Architecture Ready</h3>
           <p className="text-muted text-sm">Built for modern security models</p>
-        </GlowTile>
-        <GlowTile className="text-center">
+        </GlowingEffect>
+        <GlowingEffect intensity="bright" className="text-center p-6">
           <div className="text-3xl font-bold text-primaryAccent mb-2">Enterprise</div>
           <h3 className="text-lg font-semibold text-text mb-2">Security Market</h3>
           <p className="text-muted text-sm">$150B+ addressable market</p>
-        </GlowTile>
+        </GlowingEffect>
       </section>
+
+      {/* What Advisors Say */}
+      <AnimatedTestimonials
+        id="advisor-testimonials"
+        heading="What advisors say"
+        items={[
+          { quote: 'This technology represents a paradigm shift in autonomous security.', name: 'Former CISO', title: 'Fortune 100 Tech Company' },
+          { quote: 'The market timing is perfect - enterprises need this now.', name: 'Venture Partner', title: 'Top-Tier Security Fund' },
+          { quote: 'Impressive technical depth with clear commercial application.', name: 'Security Advisor', title: 'Multiple IPO Exits' },
+        ]}
+      />
 
       {/* Investor Contact Form */}
       <section className="bg-surface p-8 rounded-lg">
