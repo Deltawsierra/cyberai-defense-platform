@@ -21,6 +21,25 @@ export default function Home() {
         ctaHref="/demo"
       />
 
+      {/* Trusted By Marquee */}
+      <ThreeDMarquee items={[
+        { alt:'Partner 1', label:'ALPHA' },
+        { alt:'Partner 2', label:'BETA' },
+        { alt:'Partner 3', label:'GAMMA' },
+        { alt:'Partner 4', label:'DELTA' }
+      ]}/>
+
+      {/* Testimonials */}
+      <AnimatedTestimonials
+        id="home-testimonials"
+        heading="Trusted by security leaders"
+        items={[
+          { quote: 'Cut our MTTR dramatically in the first week.', name: 'Security Director', title: 'Fortune 500' },
+          { quote: 'Finally, AI that explains itself to analysts.', name: 'SOC Manager', title: 'Global MSSP' },
+          { quote: 'Deployment was painless and the insights were immediate.', name: 'CISO', title: 'Enterprise SaaS' },
+        ]}
+      />
+
       {/* Features Section */}
       <section className="py-16" aria-labelledby="features-title">
         <h2 id="features-title" className="sr-only">Features</h2>
@@ -102,25 +121,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Testimonials */}
-      <AnimatedTestimonials
-        id="home-testimonials"
-        heading="Trusted by security leaders"
-        items={[
-          { quote: 'Cut our MTTR dramatically in the first week.', name: 'Security Director', title: 'Fortune 500' },
-          { quote: 'Finally, AI that explains itself to analysts.', name: 'SOC Manager', title: 'Global MSSP' },
-          { quote: 'Deployment was painless and the insights were immediate.', name: 'CISO', title: 'Enterprise SaaS' },
-        ]}
-      />
-
-      {/* Trusted By Marquee */}
-      <ThreeDMarquee items={[
-        { alt:'Partner 1', label:'ALPHA' },
-        { alt:'Partner 2', label:'BETA' },
-        { alt:'Partner 3', label:'GAMMA' },
-        { alt:'Partner 4', label:'DELTA' }
-      ]}/>
     </div>
     </>
   )
