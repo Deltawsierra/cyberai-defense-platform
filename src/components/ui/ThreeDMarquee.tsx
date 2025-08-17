@@ -1,19 +1,24 @@
 "use client";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 
 /** Back-compat: accept either `images` or `items` (items[].src). Prefer `images`. */
 type BackCompatItems = { alt?: string; src?: string; label?: string }[];
+
+interface ThreeDMarqueeProps {
+  images?: string[];
+  items?: BackCompatItems;
+  className?: string;
+}
 
 export default function ThreeDMarquee({
   images,
   items,
   className,
-}: {
-  images?: string[];
-  items?: BackCompatItems;
-  className?: string;
-}) {
+}: ThreeDMarqueeProps) {
+  const prefersReducedMotion = useReducedMotion();
+  
   const list = images && images.length
     ? images
     : (items || []).map(i => i.src!).filter(Boolean);
@@ -29,10 +34,17 @@ export default function ThreeDMarquee({
   });
 
   return (
-    <div className={cn("mx-auto block h-[600px] overflow-hidden rounded-2xl max-sm:h-[400px]", className)}>
+    <div 
+      className={cn("mx-auto block h-[600px] overflow-hidden rounded-2xl max-sm:h-[400px]", className)}
+      aria-hidden="true"
+      role="presentation"
+    >
       <div className="relative flex w-full h-full items-center justify-center" style={{ perspective: "800px" }}>
         {/* Background gradient effect */}
-        <div className="absolute inset-0 -z-10 grid grid-cols-2 opacity-20 dark:opacity-30 pointer-events-none">
+        <div 
+          className="absolute inset-0 -z-10 grid grid-cols-2 opacity-20 dark:opacity-30 pointer-events-none"
+          aria-hidden="true"
+        >
           <div className="bg-gradient-to-br from-primary to-purple-500" />
           <div className="bg-gradient-to-br from-blue-500 to-cyan-500" />
         </div>
@@ -44,27 +56,37 @@ export default function ThreeDMarquee({
             {chunks.map((subarray, colIndex) => (
               <motion.div
                 key={colIndex + "marquee"}
-                animate={{ y: colIndex % 2 === 0 ? 100 : -100 }}
-                transition={{
+                animate={prefersReducedMotion ? {} : { y: colIndex % 2 === 0 ? 100 : -100 }}
+                transition={prefersReducedMotion ? {} : {
                   duration: colIndex % 2 === 0 ? 10 : 15,
                   repeat: Infinity,
                   repeatType: "reverse",
                 }}
                 className="flex flex-col items-start gap-8"
               >
-                <GridLineVertical className="-left-4" offset="80px" />
+                <GridLineVertical 
+                  className="-left-4" 
+                  offset="80px" 
+                  aria-hidden="true"
+                />
                 {subarray.map((image, imageIndex) => (
                   <div className="relative" key={imageIndex + image}>
-                    <GridLineHorizontal className="-top-4" offset="20px" />
+                    <GridLineHorizontal 
+                      className="-top-4" 
+                      offset="20px" 
+                      aria-hidden="true"
+                    />
                     <motion.img
-                      whileHover={{ y: -10 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      whileHover={prefersReducedMotion ? {} : { y: -10 }}
+                      transition={prefersReducedMotion ? {} : { duration: 0.3, ease: "easeInOut" }}
                       src={image}
-                      alt={`Image ${imageIndex + 1}`}
+                      alt=""
                       className="aspect-[970/700] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
                       width={970}
                       height={700}
                       decoding="sync"
+                      tabIndex={-1}
+                      aria-hidden="true"
                     />
                   </div>
                 ))}
@@ -108,6 +130,8 @@ function GridLineHorizontal({
         "dark:bg-[linear-gradient(to_right,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
         className
       )}
+      aria-hidden="true"
+      role="presentation"
     />
   );
 }
@@ -143,6 +167,8 @@ function GridLineVertical({
         "dark:bg-[linear-gradient(to_bottom,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
         className
       )}
+      aria-hidden="true"
+      role="presentation"
     />
   );
 }
